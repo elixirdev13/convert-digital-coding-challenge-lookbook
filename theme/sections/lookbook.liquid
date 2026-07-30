@@ -1,0 +1,71 @@
+{%- comment -%}
+  Homepage lookbook section.
+
+  The merchant selects exactly one lookbook to display by entering its metaobject
+  handle. The section can be added to the home page (and any other template) via
+  the theme customizer.
+{%- endcomment -%}
+
+{%- render 'lookbook-mount',
+  handles: section.settings.lookbook_handle,
+  heading: section.settings.heading,
+  columns: section.settings.columns,
+  show_description: section.settings.show_description,
+  storefront_access_token: section.settings.storefront_access_token,
+  uid: section.id
+-%}
+
+{% schema %}
+{
+  "name": "Lookbook",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "lookbook_handle",
+      "label": "Lookbook handle",
+      "info": "The handle of the lookbook metaobject entry to display (e.g. summer-2026)."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop the look"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show lookbook description",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Storefront API"
+    },
+    {
+      "type": "text",
+      "id": "storefront_access_token",
+      "label": "Storefront API public token",
+      "info": "Public token used to fetch product data at runtime. Safe to expose on the storefront."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lookbook"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["index", "page"]
+  }
+}
+{% endschema %}

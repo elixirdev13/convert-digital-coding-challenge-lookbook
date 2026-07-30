@@ -1,0 +1,95 @@
+{%- comment -%}
+  Product page lookbook section.
+
+  This section does NOT let the merchant pick a lookbook. Instead it renders any
+  lookbook that contains the current product. If the product appears in three or
+  more lookbooks, only the first two are shown (per requirements).
+
+  All other customization settings are identical to the homepage Lookbook section.
+{%- endcomment -%}
+
+{%- assign matched_handles = '' -%}
+{%- assign matched_count = 0 -%}
+
+{%- for lookbook in shop.metaobjects['lookbook'].values -%}
+  {%- if matched_count >= 2 -%}
+    {%- break -%}
+  {%- endif -%}
+  {%- if lookbook.products.value contains product.handle -%}
+    {%- if matched_handles == '' -%}
+      {%- assign matched_handles = lookbook.system.handle -%}
+    {%- else -%}
+      {%- assign matched_handles = matched_handles | append: ',' | append: lookbook.system.handle -%}
+    {%- endif -%}
+    {%- assign matched_count = matched_count | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if matched_handles != '' -%}
+  {%- render 'lookbook-mount',
+    handles: matched_handles,
+    heading: section.settings.heading,
+    columns: section.settings.columns,
+    show_description: section.settings.show_description,
+    storefront_access_token: section.settings.storefront_access_token,
+    uid: section.id
+  -%}
+{%- elsif request.design_mode -%}
+  <p style="text-align:center;padding:2rem;">
+    This product is not part of any lookbook yet. Add its handle to a lookbook
+    metaobject to see it here.
+  </p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Lookbook (product)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Automatically shows any lookbook the current product belongs to (max 2)."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop the look"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show lookbook description",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Storefront API"
+    },
+    {
+      "type": "text",
+      "id": "storefront_access_token",
+      "label": "Storefront API public token",
+      "info": "Public token used to fetch product data at runtime. Safe to expose on the storefront."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lookbook (product)"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}

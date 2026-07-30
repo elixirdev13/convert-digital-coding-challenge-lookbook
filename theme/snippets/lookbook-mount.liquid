@@ -1,0 +1,62 @@
+{%- comment -%}
+  Renders the mount point for the React lookbook app and embeds the data it needs.
+
+  Accepts:
+    handles                 - comma-separated list of lookbook metaobject handles
+    heading                 - section heading text
+    columns                 - number of columns (2-4)
+    show_description        - boolean, whether to render lookbook descriptions
+    storefront_access_token - public Storefront API token (entered in theme editor)
+    uid                     - unique id for this instance (usually section.id)
+
+  Only lookbook *handles* are stored in the metaobject. Product data (price,
+  compare-at, image) is fetched client-side by the React app via the Storefront
+  API so that market-based price overrides resolve correctly at runtime.
+{%- endcomment -%}
+
+{%- assign handle_list = handles | split: ',' -%}
+
+{%- capture lookbooks_json -%}
+  {%- assign sep = '' -%}
+  [
+  {%- for raw_handle in handle_list -%}
+    {%- assign lb_handle = raw_handle | strip -%}
+    {%- assign lookbook = shop.metaobjects['lookbook'][lb_handle] -%}
+    {%- if lookbook != blank -%}
+      {{ sep }}{
+        "handle": {{ lb_handle | json }},
+        "title": {{ lookbook.title.value | json }},
+        "description": {{ lookbook.description.value | json }},
+        "productHandles": {{ lookbook.products.value | json }}
+      }
+      {%- assign sep = ',' -%}
+    {%- endif -%}
+  {%- endfor -%}
+  ]
+{%- endcapture -%}
+
+<div
+  id="lookbook-app-{{ uid }}"
+  data-lookbook-app
+>
+  <script type="application/json" data-lookbook-payload>
+    {
+      "lookbooks": {{ lookbooks_json }},
+      "settings": {
+        "columns": {{ columns | default: 3 }},
+        "showDescription": {{ show_description | default: false }},
+        "heading": {{ heading | default: '' | json }}
+      },
+      "config": {
+        "shopDomain": {{ shop.permanent_domain | json }},
+        "storefrontToken": {{ storefront_access_token | json }},
+        "apiVersion": "2025-07",
+        "country": {{ localization.country.iso_code | json }},
+        "language": {{ localization.language.iso_code | json }}
+      }
+    }
+  </script>
+</div>
+
+{{ 'lookbook.bundle.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'lookbook.bundle.js' | asset_url }}" defer></script>

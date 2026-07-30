@@ -1,0 +1,21 @@
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.regular {
+  color: var(--color-foreground, #121212);
+}
+
+.sale {
+  color: var(--color-sale-price, #b3093c);
+  font-weight: 600;
+}
+
+.compareAt {
+  color: var(--color-foreground, #121212);
+  opacity: 0.55;
+  font-size: 0.85em;
+}
