@@ -82,7 +82,6 @@ npm run theme:dev    # push/preview theme with Shopify CLI
 Both the home-page and product-page sections expose the **same** settings (the
 product section simply omits the lookbook picker):
 
-- **Heading** text
 - **Columns** (2–4)
 - **Show lookbook description** toggle
 - **Typography:** heading / subheading / product title / price font sizes (px)

@@ -102,7 +102,6 @@
     "lookbook_product": {
       "type": "lookbook-product",
       "settings": {
-        "heading": "Shop the look",
         "columns": 3,
         "show_description": true,
         "heading_font_size": 28,
