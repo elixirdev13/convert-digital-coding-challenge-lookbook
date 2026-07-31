@@ -6,6 +6,7 @@
     heading                 - section heading text
     columns                 - number of columns (2-4)
     show_description        - boolean, whether to render lookbook descriptions
+    image_ratio             - product image aspect ratio (portrait|square|landscape)
     heading_font_size       - font size (px) for the lookbook title
     subheading_font_size    - font size (px) for the lookbook description
     product_title_font_size - font size (px) for each product tile title
@@ -62,6 +63,7 @@
       "settings": {
         "columns": {{ columns | default: 3 }},
         "showDescription": {{ show_description | default: false }},
+        "imageRatio": {{ image_ratio | default: 'portrait' | json }},
         "heading": {{ heading | default: '' | json }},
         "headingFontSize": {{ heading_font_size | default: 28 }},
         "subheadingFontSize": {{ subheading_font_size | default: 16 }},

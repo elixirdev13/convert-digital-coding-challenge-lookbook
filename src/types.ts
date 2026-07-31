@@ -15,6 +15,8 @@ export interface LookbookDisplaySettings {
   columns: number;
   showDescription: boolean;
   heading: string;
+  /** Product image aspect ratio. */
+  imageRatio: "portrait" | "square" | "landscape";
   /** Font sizes (px) configurable in the theme customizer. */
   headingFontSize: number;
   subheadingFontSize: number;

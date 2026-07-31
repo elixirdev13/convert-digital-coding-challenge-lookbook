@@ -11,6 +11,7 @@
   heading: section.settings.heading,
   columns: section.settings.columns,
   show_description: section.settings.show_description,
+  image_ratio: section.settings.image_ratio,
   heading_font_size: section.settings.heading_font_size,
   subheading_font_size: section.settings.subheading_font_size,
   product_title_font_size: section.settings.product_title_font_size,
@@ -51,6 +52,17 @@
       "id": "show_description",
       "label": "Show lookbook description",
       "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        { "value": "portrait", "label": "Portrait (3:4)" },
+        { "value": "square", "label": "Square (1:1)" },
+        { "value": "landscape", "label": "Landscape (4:3)" }
+      ],
+      "default": "portrait"
     },
     {
       "type": "header",

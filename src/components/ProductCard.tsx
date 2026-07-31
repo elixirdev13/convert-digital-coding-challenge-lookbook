@@ -1,11 +1,18 @@
 import type { StorefrontProduct } from "../types";
 import { Price } from "./Price";
 
+const RATIO_CLASS: Record<string, string> = {
+  portrait: "lb-aspect-[3/4]",
+  square: "lb-aspect-square",
+  landscape: "lb-aspect-[4/3]",
+};
+
 interface ProductCardProps {
   product: StorefrontProduct;
   locale: string;
   titleFontSize: number;
   priceFontSize: number;
+  imageRatio: "portrait" | "square" | "landscape";
 }
 
 export function ProductCard({
@@ -13,15 +20,19 @@ export function ProductCard({
   locale,
   titleFontSize,
   priceFontSize,
+  imageRatio,
 }: ProductCardProps) {
   const href = product.url ?? `/products/${product.handle}`;
+  const ratioClass = RATIO_CLASS[imageRatio] ?? RATIO_CLASS.portrait;
 
   return (
     <a
       className="lb-group lb-flex lb-flex-col lb-gap-2 lb-text-inherit lb-no-underline"
       href={href}
     >
-      <div className="lb-aspect-[3/4] lb-overflow-hidden lb-rounded-md lb-bg-neutral-100">
+      <div
+        className={`${ratioClass} lb-overflow-hidden lb-rounded-md lb-bg-neutral-100`}
+      >
         {product.image ? (
           <img
             className="lb-block lb-h-full lb-w-full lb-object-cover lb-transition-transform lb-duration-300 group-hover:lb-scale-105"
