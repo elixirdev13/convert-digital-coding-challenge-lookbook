@@ -62,6 +62,7 @@ export function Lookbook({ lookbook, settings, config }: LookbookProps) {
               locale={locale}
               titleFontSize={settings.productTitleFontSize}
               priceFontSize={settings.priceFontSize}
+              imageRatio={settings.imageRatio}
             />
           ))}
         </div>
