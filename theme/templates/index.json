@@ -166,8 +166,6 @@
     "lookbook": {
       "type": "lookbook",
       "settings": {
-        "lookbook_handle": "winter-essentials",
-        "heading": "Shop the look",
         "columns": 3,
         "show_description": true,
         "heading_font_size": 28,

@@ -35,7 +35,6 @@
 {%- if matched_handles != '' -%}
   {%- render 'lookbook-mount',
     handles: matched_handles,
-    heading: section.settings.heading,
     columns: section.settings.columns,
     show_description: section.settings.show_description,
     image_ratio: section.settings.image_ratio,
@@ -62,12 +61,6 @@
     {
       "type": "paragraph",
       "content": "Automatically shows any lookbook the current product belongs to (max 2)."
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Shop the look"
     },
     {
       "type": "range",

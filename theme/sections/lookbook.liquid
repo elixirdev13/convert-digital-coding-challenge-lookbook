@@ -2,31 +2,28 @@
   Homepage lookbook section.
 
   The merchant picks exactly one lookbook to display using the native metaobject
-  picker (Lookbook setting). A text "handle" field is kept as an optional fallback
-  for advanced use. The section can be added to the home page (and any other
-  template) via the theme customizer.
+  picker (Lookbook setting). The section can be added to the home page (and any
+  other template) via the theme customizer.
 {%- endcomment -%}
 
-{%- liquid
-  assign selected_handles = section.settings.lookbook_handle
-  if section.settings.lookbook_entry != blank
-    assign selected_handles = section.settings.lookbook_entry.system.handle
-  endif
--%}
-
-{%- render 'lookbook-mount',
-  handles: selected_handles,
-  heading: section.settings.heading,
-  columns: section.settings.columns,
-  show_description: section.settings.show_description,
-  image_ratio: section.settings.image_ratio,
-  heading_font_size: section.settings.heading_font_size,
-  subheading_font_size: section.settings.subheading_font_size,
-  product_title_font_size: section.settings.product_title_font_size,
-  price_font_size: section.settings.price_font_size,
-  storefront_access_token: section.settings.storefront_access_token,
-  uid: section.id
--%}
+{%- if section.settings.lookbook_entry != blank -%}
+  {%- render 'lookbook-mount',
+    handles: section.settings.lookbook_entry.system.handle,
+    columns: section.settings.columns,
+    show_description: section.settings.show_description,
+    image_ratio: section.settings.image_ratio,
+    heading_font_size: section.settings.heading_font_size,
+    subheading_font_size: section.settings.subheading_font_size,
+    product_title_font_size: section.settings.product_title_font_size,
+    price_font_size: section.settings.price_font_size,
+    storefront_access_token: section.settings.storefront_access_token,
+    uid: section.id
+  -%}
+{%- elsif request.design_mode -%}
+  <p style="text-align:center;padding:2rem;">
+    Select a lookbook in this section's settings to display it here.
+  </p>
+{%- endif -%}
 
 {% schema %}
 {
@@ -40,18 +37,6 @@
       "label": "Lookbook",
       "metaobject_type": "lookbook",
       "info": "Pick the lookbook to display on this section."
-    },
-    {
-      "type": "text",
-      "id": "lookbook_handle",
-      "label": "Lookbook handle (fallback)",
-      "info": "Optional. Used only if no lookbook is picked above. Enter a metaobject handle (e.g. winter-essentials)."
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Shop the look"
     },
     {
       "type": "range",
