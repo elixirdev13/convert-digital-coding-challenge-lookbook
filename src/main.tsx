@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Lookbook } from "./components/Lookbook";
 import type { LookbookPayload } from "./types";
+import "./styles/tailwind.css";
 
 // Each lookbook section rendered by Liquid outputs a mount element carrying a
 // JSON payload (lookbook metaobject data + settings + market config). We hydrate

@@ -15,7 +15,14 @@
   {%- if matched_count >= 2 -%}
     {%- break -%}
   {%- endif -%}
-  {%- if lookbook.products.value contains product.handle -%}
+  {%- assign is_member = false -%}
+  {%- for lb_product in lookbook.products.value -%}
+    {%- if lb_product.handle == product.handle -%}
+      {%- assign is_member = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if is_member -%}
     {%- if matched_handles == '' -%}
       {%- assign matched_handles = lookbook.system.handle -%}
     {%- else -%}
@@ -31,13 +38,17 @@
     heading: section.settings.heading,
     columns: section.settings.columns,
     show_description: section.settings.show_description,
+    heading_font_size: section.settings.heading_font_size,
+    subheading_font_size: section.settings.subheading_font_size,
+    product_title_font_size: section.settings.product_title_font_size,
+    price_font_size: section.settings.price_font_size,
     storefront_access_token: section.settings.storefront_access_token,
     uid: section.id
   -%}
 {%- elsif request.design_mode -%}
   <p style="text-align:center;padding:2rem;">
-    This product is not part of any lookbook yet. Add its handle to a lookbook
-    metaobject to see it here.
+    This product is not part of any lookbook yet. Add it to a lookbook
+    metaobject's Products field to see it here.
   </p>
 {%- endif -%}
 
@@ -71,6 +82,50 @@
       "id": "show_description",
       "label": "Show lookbook description",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading font size",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size",
+      "label": "Subheading font size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "product_title_font_size",
+      "label": "Product title font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "price_font_size",
+      "label": "Price font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     },
     {
       "type": "header",

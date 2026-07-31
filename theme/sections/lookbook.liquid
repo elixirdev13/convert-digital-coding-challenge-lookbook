@@ -11,6 +11,10 @@
   heading: section.settings.heading,
   columns: section.settings.columns,
   show_description: section.settings.show_description,
+  heading_font_size: section.settings.heading_font_size,
+  subheading_font_size: section.settings.subheading_font_size,
+  product_title_font_size: section.settings.product_title_font_size,
+  price_font_size: section.settings.price_font_size,
   storefront_access_token: section.settings.storefront_access_token,
   uid: section.id
 -%}
@@ -47,6 +51,50 @@
       "id": "show_description",
       "label": "Show lookbook description",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading font size",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "subheading_font_size",
+      "label": "Subheading font size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "product_title_font_size",
+      "label": "Product title font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "price_font_size",
+      "label": "Price font size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     },
     {
       "type": "header",

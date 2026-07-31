@@ -17,32 +17,35 @@ entirely from the Shopify admin with no third-party apps.
 | ----------- | ------------- | ----------------------------- | --------------------------------------------------------------------- |
 | Title       | `title`       | Single line text              | Display heading for the lookbook.                                     |
 | Description | `description` | Multi-line text               | Optional supporting copy shown under the title.                       |
-| Products    | `products`    | List of single line text      | **Product handles only.** One handle per list item (e.g. `linen-shirt`). |
+| Products    | `products`    | Product (list of references)  | Merchant picks products from the built-in searchable picker.          |
 
-> The spec requires the lookbook to "specify handles only". We deliberately store
-> the `products` field as a **list of text handles** rather than product
-> references. Product details (price, compare-at, image) are fetched at runtime
-> via the Storefront API — nothing about the product is duplicated into the
-> metaobject.
+> The `products` field is a **list of product references** so the merchant picks
+> products from the native admin picker instead of typing handles (fewer typos,
+> better UX). The theme still works with **handles only**: `lookbook-mount.liquid`
+> resolves each reference down to its `handle` before handing data to the React
+> app. Product details (price, compare-at, image) are fetched at runtime via the
+> Storefront API — nothing about the product is duplicated into the metaobject.
 
 ## Creating a lookbook entry
 
 1. Admin → **Content → Metaobjects → Lookbook → Add entry**.
 2. Fill in **Title** and **Description**.
-3. Under **Products**, add one product **handle** per line.
+3. Under **Products**, use the product picker to add each product to the list.
 4. Note the entry **handle** (e.g. `summer-2026`) — this is what the homepage
    section references.
 
 ## How membership is resolved on product pages
 
 The product-page section iterates every `lookbook` entry and checks whether the
-current product's handle is present in that entry's `products` list:
+current product is present in that entry's `products` reference list:
 
 ```liquid
 {%- for lookbook in shop.metaobjects['lookbook'].values -%}
-  {%- if lookbook.products.value contains product.handle -%}
-    ...matched...
-  {%- endif -%}
+  {%- for lb_product in lookbook.products.value -%}
+    {%- if lb_product.handle == product.handle -%}
+      ...matched...
+    {%- endif -%}
+  {%- endfor -%}
 {%- endfor -%}
 ```
 

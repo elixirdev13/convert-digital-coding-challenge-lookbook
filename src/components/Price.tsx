@@ -1,10 +1,10 @@
 import type { Money } from "../types";
-import styles from "./Price.module.css";
 
 interface PriceProps {
   price: Money;
   compareAtPrice: Money | null;
   locale: string;
+  fontSize: number;
 }
 
 function format(money: Money, locale: string): string {
@@ -20,16 +20,25 @@ function format(money: Money, locale: string): string {
   }
 }
 
-export function Price({ price, compareAtPrice, locale }: PriceProps) {
+export function Price({ price, compareAtPrice, locale, fontSize }: PriceProps) {
   const onSale = compareAtPrice !== null;
 
   return (
-    <div className={styles.price}>
-      <span className={onSale ? styles.sale : styles.regular}>
+    <div
+      className="lb-flex lb-items-baseline lb-gap-2"
+      style={{ fontSize: `${fontSize}px` }}
+    >
+      <span
+        className={
+          onSale ? "lb-font-semibold lb-text-rose-600" : "lb-text-inherit"
+        }
+      >
         {format(price, locale)}
       </span>
       {onSale && (
-        <s className={styles.compareAt}>{format(compareAtPrice, locale)}</s>
+        <s className="lb-text-[0.85em] lb-text-inherit lb-opacity-60">
+          {format(compareAtPrice, locale)}
+        </s>
       )}
     </div>
   );

@@ -15,6 +15,11 @@ export interface LookbookDisplaySettings {
   columns: number;
   showDescription: boolean;
   heading: string;
+  /** Font sizes (px) configurable in the theme customizer. */
+  headingFontSize: number;
+  subheadingFontSize: number;
+  productTitleFontSize: number;
+  priceFontSize: number;
 }
 
 /** A single lookbook resolved from a Shopify metaobject (in Liquid). */
