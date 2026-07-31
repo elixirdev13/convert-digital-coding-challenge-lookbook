@@ -1,13 +1,21 @@
 {%- comment -%}
   Homepage lookbook section.
 
-  The merchant selects exactly one lookbook to display by entering its metaobject
-  handle. The section can be added to the home page (and any other template) via
-  the theme customizer.
+  The merchant picks exactly one lookbook to display using the native metaobject
+  picker (Lookbook setting). A text "handle" field is kept as an optional fallback
+  for advanced use. The section can be added to the home page (and any other
+  template) via the theme customizer.
 {%- endcomment -%}
 
+{%- liquid
+  assign selected_handles = section.settings.lookbook_handle
+  if section.settings.lookbook_entry != blank
+    assign selected_handles = section.settings.lookbook_entry.system.handle
+  endif
+-%}
+
 {%- render 'lookbook-mount',
-  handles: section.settings.lookbook_handle,
+  handles: selected_handles,
   heading: section.settings.heading,
   columns: section.settings.columns,
   show_description: section.settings.show_description,
@@ -27,10 +35,17 @@
   "class": "section",
   "settings": [
     {
+      "type": "metaobject",
+      "id": "lookbook_entry",
+      "label": "Lookbook",
+      "metaobject_type": "lookbook",
+      "info": "Pick the lookbook to display on this section."
+    },
+    {
       "type": "text",
       "id": "lookbook_handle",
-      "label": "Lookbook handle",
-      "info": "The handle of the lookbook metaobject entry to display (e.g. summer-2026)."
+      "label": "Lookbook handle (fallback)",
+      "info": "Optional. Used only if no lookbook is picked above. Enter a metaobject handle (e.g. winter-essentials)."
     },
     {
       "type": "text",

@@ -51,8 +51,8 @@ npm run theme:dev  # shopify theme dev --path theme
 
 In the theme editor:
 
-- **Home page:** add the **Lookbook** section. Enter a **lookbook handle** and
-  paste the **Storefront API public token**.
+- **Home page:** add the **Lookbook** section. Pick a lookbook from the native
+  **Lookbook** metaobject picker and paste the **Storefront API public token**.
 - **Product page:** add the **Lookbook (product)** section. No lookbook picker —
   it auto-detects. Paste the same **Storefront API public token**.
 
