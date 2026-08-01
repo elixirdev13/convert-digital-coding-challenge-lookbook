@@ -1593,6 +1593,32 @@
         "default": "portrait"
       },
       {
+        "type": "checkbox",
+        "id": "lookbook_enable_carousel",
+        "label": "Display products as a carousel",
+        "default": false,
+        "info": "Show products in a horizontal, swipeable slider instead of a grid. Handy for lookbooks with many products."
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "paragraph",
+        "content": "Leave a color blank to inherit from the theme."
+      },
+      {
+        "type": "color",
+        "id": "lookbook_text_color",
+        "label": "Text color"
+      },
+      {
+        "type": "color",
+        "id": "lookbook_background_color",
+        "label": "Background color",
+        "info": "Fills the full width of the lookbook section."
+      },
+      {
         "type": "header",
         "content": "Typography"
       },

@@ -16,6 +16,11 @@ export interface LookbookDisplaySettings {
   showDescription: boolean;
   /** Product image aspect ratio. */
   imageRatio: "portrait" | "square" | "landscape";
+  /** Render products in a horizontal carousel instead of a grid. */
+  enableCarousel: boolean;
+  /** Optional colors from theme settings; empty string means "inherit". */
+  textColor: string;
+  backgroundColor: string;
   /** Font sizes (px) configurable in the theme customizer. */
   headingFontSize: number;
   subheadingFontSize: number;
