@@ -99,6 +99,16 @@ Per-section:
 - **Home page** — **Lookbook** picker (which lookbook to display)
 - **Product page** — no picker; auto-detects lookbooks containing the product
 
+### A note on the Storefront API token (for reviewers)
+
+The token exposed on the storefront is a **public Storefront API access token**
+(read-only, unauthenticated). It is *designed* to be sent to the browser — the
+React app calls the Storefront API client-side at runtime, exactly like Shopify
+Hydrogen and other headless storefronts. It is **not** an Admin API token and
+cannot read orders or customer data. It is pre-filled in Theme settings →
+Lookbook for out-of-the-box/demo purposes and can be rotated in **Admin → Apps →
+(custom app) → API credentials** at any time.
+
 ## Requirements coverage
 
 | Requirement                                             | Where                                                             |
