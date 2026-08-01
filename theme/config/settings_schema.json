@@ -1557,5 +1557,96 @@
         "info": "t:settings_schema.cart.settings.cart_drawer.collection.info"
       }
     ]
+  },
+  {
+    "name": "Lookbook",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Shared styling for every lookbook (home page and product pages). Choose which lookbook shows on the home page in the Lookbook section itself."
+      },
+      {
+        "type": "range",
+        "id": "lookbook_columns",
+        "label": "Columns",
+        "min": 2,
+        "max": 4,
+        "step": 1,
+        "default": 3,
+        "info": "Used for lookbooks with fewer than 4 products. Lookbooks with 4 or more products always show 4 per row."
+      },
+      {
+        "type": "checkbox",
+        "id": "lookbook_show_description",
+        "label": "Show lookbook description",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "lookbook_image_ratio",
+        "label": "Image aspect ratio",
+        "options": [
+          { "value": "portrait", "label": "Portrait (3:4)" },
+          { "value": "square", "label": "Square (1:1)" },
+          { "value": "landscape", "label": "Landscape (4:3)" }
+        ],
+        "default": "portrait"
+      },
+      {
+        "type": "header",
+        "content": "Typography"
+      },
+      {
+        "type": "range",
+        "id": "lookbook_heading_font_size",
+        "label": "Heading font size",
+        "min": 16,
+        "max": 48,
+        "step": 1,
+        "unit": "px",
+        "default": 28
+      },
+      {
+        "type": "range",
+        "id": "lookbook_subheading_font_size",
+        "label": "Subheading font size",
+        "min": 12,
+        "max": 28,
+        "step": 1,
+        "unit": "px",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "lookbook_product_title_font_size",
+        "label": "Product title font size",
+        "min": 12,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 14
+      },
+      {
+        "type": "range",
+        "id": "lookbook_price_font_size",
+        "label": "Price font size",
+        "min": 12,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 14
+      },
+      {
+        "type": "header",
+        "content": "Storefront API"
+      },
+      {
+        "type": "text",
+        "id": "lookbook_storefront_token",
+        "label": "Storefront API public token",
+        "default": "a4ec3e43d076401be70ca1368efa4945",
+        "info": "Public token used to fetch product data at runtime. Safe to expose on the storefront."
+      }
+    ]
   }
 ]

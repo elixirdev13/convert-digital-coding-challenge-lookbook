@@ -17,6 +17,15 @@ export function Lookbook({ lookbook, settings, config }: LookbookProps) {
 
   const locale = `${config.language || "en"}-${config.country || "US"}`;
 
+  // Auto-fit the grid to the number of products: lookbooks with 4 or more
+  // products always render 4 per row; smaller lookbooks use the merchant's
+  // "Columns" setting (never showing more columns than there are products, so
+  // there are no empty trailing cells).
+  const columnCount = Math.max(
+    1,
+    products.length >= 4 ? 4 : Math.min(products.length, settings.columns),
+  );
+
   return (
     <section
       className="lb-mx-auto lb-box-border lb-max-w-[var(--page-width,1200px)] lb-px-6 lb-py-8 lg:lb-px-20 lg:lb-py-12"
@@ -53,7 +62,7 @@ export function Lookbook({ lookbook, settings, config }: LookbookProps) {
       {!loading && !error && (
         <div
           className="lb-grid lb-grid-cols-2 lb-gap-5 md:lb-grid-cols-[repeat(var(--lb-cols),minmax(0,1fr))]"
-          style={{ "--lb-cols": settings.columns } as CSSProperties}
+          style={{ "--lb-cols": columnCount } as CSSProperties}
         >
           {products.map((product) => (
             <ProductCard

@@ -101,15 +101,7 @@
     },
     "lookbook_product": {
       "type": "lookbook-product",
-      "settings": {
-        "columns": 3,
-        "show_description": true,
-        "heading_font_size": 28,
-        "subheading_font_size": 16,
-        "product_title_font_size": 14,
-        "price_font_size": 14,
-        "storefront_access_token": "a4ec3e43d076401be70ca1368efa4945"
-      }
+      "settings": {}
     }
   },
   "order": [

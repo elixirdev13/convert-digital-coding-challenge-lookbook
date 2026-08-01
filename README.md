@@ -79,13 +79,23 @@ npm run theme:dev    # push/preview theme with Shopify CLI
 
 ## Theme customizer settings
 
-Both the home-page and product-page sections expose the **same** settings (the
-product section simply omits the lookbook picker):
+Display/styling is shared across the home-page and product-page lookbooks via
+**Theme settings → Lookbook**, so configuring it once affects both. The only
+per-section control is the lookbook **picker** on the home-page section.
 
-- **Columns** (2–4)
+Shared settings (Theme settings → Lookbook):
+
+- **Columns** (2–4) — used for lookbooks with fewer than 4 products; lookbooks
+  with 4+ products always render 4 per row
 - **Show lookbook description** toggle
+- **Image aspect ratio** (portrait / square / landscape)
 - **Typography:** heading / subheading / product title / price font sizes (px)
 - **Storefront API public token**
+
+Per-section:
+
+- **Home page** — **Lookbook** picker (which lookbook to display)
+- **Product page** — no picker; auto-detects lookbooks containing the product
 
 ## Requirements coverage
 

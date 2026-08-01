@@ -51,10 +51,13 @@ npm run theme:dev  # shopify theme dev --path theme
 
 In the theme editor:
 
-- **Home page:** add the **Lookbook** section. Pick a lookbook from the native
-  **Lookbook** metaobject picker and paste the **Storefront API public token**.
+- **Theme settings → Lookbook:** set the shared styling once (columns, show
+  description, image aspect ratio, typography, and the **Storefront API public
+  token**). These apply to both the home page and product pages.
+- **Home page:** add the **Lookbook** section and pick a lookbook from the native
+  **Lookbook** metaobject picker.
 - **Product page:** add the **Lookbook (product)** section. No lookbook picker —
-  it auto-detects. Paste the same **Storefront API public token**.
+  it auto-detects any lookbook the product belongs to.
 
 ## 7. Verify
 
