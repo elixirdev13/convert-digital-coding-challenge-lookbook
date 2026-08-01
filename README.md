@@ -31,7 +31,7 @@ theme (including Horizon).
 │   ├── main.tsx                # finds mount points, hydrates lookbooks
 │   ├── api/storefront.ts       # Storefront API client + GraphQL query
 │   ├── hooks/                  # useLookbookProducts
-│   ├── components/             # Lookbook, ProductCard, Price
+│   ├── components/             # Lookbook, ProductCard, ProductCarousel, Price
 │   ├── styles/tailwind.css     # Tailwind entry (imported by main.tsx)
 │   └── types.ts
 ├── theme/                      # Dawn-based theme + the lookbook overlay
@@ -89,6 +89,8 @@ Shared settings (Theme settings → Lookbook):
   with 4+ products always render 4 per row
 - **Show lookbook description** toggle
 - **Image aspect ratio** (portrait / square / landscape)
+- **Display products as a carousel** toggle — swipeable slider instead of a grid
+- **Colors:** text color and full-width background color (blank = inherit)
 - **Typography:** heading / subheading / product title / price font sizes (px)
 - **Storefront API public token**
 

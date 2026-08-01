@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { useLookbookProducts } from "../hooks/useLookbookProducts";
 import type { LookbookData, LookbookDisplaySettings, StorefrontConfig } from "../types";
 import { ProductCard } from "./ProductCard";
+import { ProductCarousel } from "./ProductCarousel";
 
 interface LookbookProps {
   lookbook: LookbookData;
@@ -26,56 +27,73 @@ export function Lookbook({ lookbook, settings, config }: LookbookProps) {
     products.length >= 4 ? 4 : Math.min(products.length, settings.columns),
   );
 
+  // Colors come from theme settings. An empty value means "inherit from the
+  // theme", so we only set the inline property when the merchant chose a color.
+  // The color/background live on the full-width <section> so the background is
+  // edge-to-edge, while the content stays centered in the inner container.
+  const sectionStyle: CSSProperties = {};
+  if (settings.backgroundColor) sectionStyle.backgroundColor = settings.backgroundColor;
+  if (settings.textColor) sectionStyle.color = settings.textColor;
+
   return (
-    <section
-      className="lb-mx-auto lb-box-border lb-max-w-[var(--page-width,1200px)] lb-px-6 lb-py-8 lg:lb-px-20 lg:lb-py-12"
-      aria-label={lookbook.title}
-    >
-      <header className="lb-mb-6 lb-text-center">
-        <h2
-          className="lb-m-0 lb-mb-2 lb-text-inherit"
-          style={{ fontSize: `${settings.headingFontSize}px` }}
-        >
-          {lookbook.title}
-        </h2>
-        {settings.showDescription && lookbook.description && (
-          <p
-            className="lb-mx-auto lb-max-w-3xl lb-text-inherit lb-opacity-80 lb-leading-relaxed"
-            style={{ fontSize: `${settings.subheadingFontSize}px` }}
+    <section style={sectionStyle} aria-label={lookbook.title}>
+      <div className="lb-mx-auto lb-box-border lb-max-w-[var(--page-width,1200px)] lb-px-6 lb-py-8 lg:lb-px-20 lg:lb-py-12">
+        <header className="lb-mb-6 lb-text-center">
+          <h2
+            className="lb-m-0 lb-mb-2 lb-text-inherit"
+            style={{ fontSize: `${settings.headingFontSize}px` }}
           >
-            {lookbook.description}
+            {lookbook.title}
+          </h2>
+          {settings.showDescription && lookbook.description && (
+            <p
+              className="lb-mx-auto lb-max-w-3xl lb-text-inherit lb-opacity-80 lb-leading-relaxed"
+              style={{ fontSize: `${settings.subheadingFontSize}px` }}
+            >
+              {lookbook.description}
+            </p>
+          )}
+        </header>
+
+        {loading && (
+          <p className="lb-text-center lb-text-inherit lb-opacity-70">
+            Loading products…
           </p>
         )}
-      </header>
+        {error && (
+          <p className="lb-text-center lb-text-inherit lb-opacity-70">
+            Unable to load products.
+          </p>
+        )}
 
-      {loading && (
-        <p className="lb-text-center lb-text-inherit lb-opacity-70">
-          Loading products…
-        </p>
-      )}
-      {error && (
-        <p className="lb-text-center lb-text-inherit lb-opacity-70">
-          Unable to load products.
-        </p>
-      )}
+        {!loading && !error && settings.enableCarousel && (
+          <ProductCarousel
+            products={products}
+            locale={locale}
+            titleFontSize={settings.productTitleFontSize}
+            priceFontSize={settings.priceFontSize}
+            imageRatio={settings.imageRatio}
+          />
+        )}
 
-      {!loading && !error && (
-        <div
-          className="lb-grid lb-grid-cols-2 lb-gap-5 md:lb-grid-cols-[repeat(var(--lb-cols),minmax(0,1fr))]"
-          style={{ "--lb-cols": columnCount } as CSSProperties}
-        >
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              locale={locale}
-              titleFontSize={settings.productTitleFontSize}
-              priceFontSize={settings.priceFontSize}
-              imageRatio={settings.imageRatio}
-            />
-          ))}
-        </div>
-      )}
+        {!loading && !error && !settings.enableCarousel && (
+          <div
+            className="lb-grid lb-grid-cols-2 lb-gap-5 md:lb-grid-cols-[repeat(var(--lb-cols),minmax(0,1fr))]"
+            style={{ "--lb-cols": columnCount } as CSSProperties}
+          >
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                locale={locale}
+                titleFontSize={settings.productTitleFontSize}
+                priceFontSize={settings.priceFontSize}
+                imageRatio={settings.imageRatio}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }
