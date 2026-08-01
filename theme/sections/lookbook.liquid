@@ -2,21 +2,23 @@
   Homepage lookbook section.
 
   The merchant picks exactly one lookbook to display using the native metaobject
-  picker (Lookbook setting). The section can be added to the home page (and any
-  other template) via the theme customizer.
+  picker (Lookbook setting). All display/styling options (columns, description,
+  image ratio, typography, and the Storefront API token) are shared across the
+  homepage and product-page lookbooks and live in Theme settings → Lookbook, so
+  configuring them once affects both places.
 {%- endcomment -%}
 
 {%- if section.settings.lookbook_entry != blank -%}
   {%- render 'lookbook-mount',
     handles: section.settings.lookbook_entry.system.handle,
-    columns: section.settings.columns,
-    show_description: section.settings.show_description,
-    image_ratio: section.settings.image_ratio,
-    heading_font_size: section.settings.heading_font_size,
-    subheading_font_size: section.settings.subheading_font_size,
-    product_title_font_size: section.settings.product_title_font_size,
-    price_font_size: section.settings.price_font_size,
-    storefront_access_token: section.settings.storefront_access_token,
+    columns: settings.lookbook_columns,
+    show_description: settings.lookbook_show_description,
+    image_ratio: settings.lookbook_image_ratio,
+    heading_font_size: settings.lookbook_heading_font_size,
+    subheading_font_size: settings.lookbook_subheading_font_size,
+    product_title_font_size: settings.lookbook_product_title_font_size,
+    price_font_size: settings.lookbook_price_font_size,
+    storefront_access_token: settings.lookbook_storefront_token,
     uid: section.id
   -%}
 {%- elsif request.design_mode -%}
@@ -36,87 +38,7 @@
       "id": "lookbook_entry",
       "label": "Lookbook",
       "metaobject_type": "lookbook",
-      "info": "Pick the lookbook to display on this section."
-    },
-    {
-      "type": "range",
-      "id": "columns",
-      "label": "Columns",
-      "min": 2,
-      "max": 4,
-      "step": 1,
-      "default": 3
-    },
-    {
-      "type": "checkbox",
-      "id": "show_description",
-      "label": "Show lookbook description",
-      "default": true
-    },
-    {
-      "type": "select",
-      "id": "image_ratio",
-      "label": "Image aspect ratio",
-      "options": [
-        { "value": "portrait", "label": "Portrait (3:4)" },
-        { "value": "square", "label": "Square (1:1)" },
-        { "value": "landscape", "label": "Landscape (4:3)" }
-      ],
-      "default": "portrait"
-    },
-    {
-      "type": "header",
-      "content": "Typography"
-    },
-    {
-      "type": "range",
-      "id": "heading_font_size",
-      "label": "Heading font size",
-      "min": 16,
-      "max": 48,
-      "step": 1,
-      "unit": "px",
-      "default": 28
-    },
-    {
-      "type": "range",
-      "id": "subheading_font_size",
-      "label": "Subheading font size",
-      "min": 12,
-      "max": 28,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "product_title_font_size",
-      "label": "Product title font size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "price_font_size",
-      "label": "Price font size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14
-    },
-    {
-      "type": "header",
-      "content": "Storefront API"
-    },
-    {
-      "type": "text",
-      "id": "storefront_access_token",
-      "label": "Storefront API public token",
-      "info": "Public token used to fetch product data at runtime. Safe to expose on the storefront."
+      "info": "Pick the lookbook to display here. Styling (columns, typography, image ratio, Storefront token) is shared in Theme settings → Lookbook."
     }
   ],
   "presets": [
