@@ -13,8 +13,13 @@
     subheading_font_size    - font size (px) for the lookbook description
     product_title_font_size - font size (px) for each product tile title
     price_font_size         - font size (px) for each product price
-    storefront_access_token - public Storefront API token (entered in theme editor)
     uid                     - unique id for this instance (usually section.id)
+
+  The Storefront API token below is a *public* token (safe to expose on the
+  storefront, same as it appears in page source). It is hardcoded here on purpose
+  rather than surfaced as a theme setting, so a merchant can't accidentally clear
+  it and break product fetching. To rotate it, generate a new public token in
+  Admin → Settings → Apps and sales channels → Develop apps and update this value.
 
   The metaobject stores products as a *product reference list* (merchant-friendly
   picker in the admin). We resolve those references down to product *handles*
@@ -24,6 +29,7 @@
 {%- endcomment -%}
 
 {%- assign handle_list = handles | split: ',' -%}
+{%- assign storefront_access_token = 'a4ec3e43d076401be70ca1368efa4945' -%}
 
 {%- capture lookbooks_json -%}
   {%- assign sep = '' -%}
