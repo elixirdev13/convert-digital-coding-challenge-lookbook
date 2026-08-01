@@ -2,8 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 // The lookbook React app is bundled into a single JS + CSS asset that the
-// Horizon theme loads from `theme/assets`. We intentionally do NOT clear the
-// output directory so we never wipe other theme assets.
+// theme loads from `theme/assets`. We intentionally do NOT clear the output
+// directory so we never wipe other theme assets.
 export default defineConfig({
   plugins: [react()],
   build: {
