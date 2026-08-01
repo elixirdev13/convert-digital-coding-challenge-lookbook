@@ -31,8 +31,9 @@ note their handles.
 3. **Install** the app and copy the **Storefront API access token** (public).
 
 > This token is public by design and safe to expose on the storefront. It is
-> entered by the merchant in the theme editor (see step 6), not committed to the
-> repo.
+> hardcoded in `theme/snippets/lookbook-mount.liquid` (not surfaced as a theme
+> setting, so a merchant can't accidentally clear it). If you use a different
+> store, replace the value there.
 
 ## 5. Build the React app
 
@@ -52,8 +53,8 @@ npm run theme:dev  # shopify theme dev --path theme
 In the theme editor:
 
 - **Theme settings → Lookbook:** set the shared styling once (columns, show
-  description, image aspect ratio, typography, and the **Storefront API public
-  token**). These apply to both the home page and product pages.
+  description, image aspect ratio, and typography). These apply to both the home
+  page and product pages.
 - **Home page:** add the **Lookbook** section and pick a lookbook from the native
   **Lookbook** metaobject picker.
 - **Product page:** add the **Lookbook (product)** section. No lookbook picker —

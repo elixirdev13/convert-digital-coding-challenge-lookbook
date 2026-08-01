@@ -92,7 +92,6 @@ Shared settings (Theme settings → Lookbook):
 - **Display products as a carousel** toggle — swipeable slider instead of a grid
 - **Colors:** text color and full-width background color (blank = inherit)
 - **Typography:** heading / subheading / product title / price font sizes (px)
-- **Storefront API public token**
 
 Per-section:
 
@@ -105,9 +104,13 @@ The token exposed on the storefront is a **public Storefront API access token**
 (read-only, unauthenticated). It is *designed* to be sent to the browser — the
 React app calls the Storefront API client-side at runtime, exactly like Shopify
 Hydrogen and other headless storefronts. It is **not** an Admin API token and
-cannot read orders or customer data. It is pre-filled in Theme settings →
-Lookbook for out-of-the-box/demo purposes and can be rotated in **Admin → Apps →
-(custom app) → API credentials** at any time.
+cannot read orders or customer data.
+
+To keep a non-technical merchant from accidentally clearing it (which would break
+product fetching), the token is **not** surfaced as a theme setting. It is
+hardcoded in [`theme/snippets/lookbook-mount.liquid`](theme/snippets/lookbook-mount.liquid)
+and can be rotated in **Admin → Apps → (custom app) → API credentials** by
+updating that value.
 
 ## Requirements coverage
 

@@ -1661,17 +1661,6 @@
         "step": 1,
         "unit": "px",
         "default": 14
-      },
-      {
-        "type": "header",
-        "content": "Storefront API"
-      },
-      {
-        "type": "text",
-        "id": "lookbook_storefront_token",
-        "label": "Storefront API public token",
-        "default": "a4ec3e43d076401be70ca1368efa4945",
-        "info": "Public token used to fetch product data at runtime. Safe to expose on the storefront."
       }
     ]
   }

@@ -3,9 +3,9 @@
 
   The merchant picks exactly one lookbook to display using the native metaobject
   picker (Lookbook setting). All display/styling options (columns, description,
-  image ratio, typography, and the Storefront API token) are shared across the
-  homepage and product-page lookbooks and live in Theme settings → Lookbook, so
-  configuring them once affects both places.
+  image ratio, and typography) are shared across the homepage and product-page
+  lookbooks and live in Theme settings → Lookbook, so configuring them once
+  affects both places.
 {%- endcomment -%}
 
 {%- if section.settings.lookbook_entry != blank -%}
@@ -21,7 +21,6 @@
     subheading_font_size: settings.lookbook_subheading_font_size,
     product_title_font_size: settings.lookbook_product_title_font_size,
     price_font_size: settings.lookbook_price_font_size,
-    storefront_access_token: settings.lookbook_storefront_token,
     uid: section.id
   -%}
 {%- elsif request.design_mode -%}
@@ -41,7 +40,7 @@
       "id": "lookbook_entry",
       "label": "Lookbook",
       "metaobject_type": "lookbook",
-      "info": "Pick the lookbook to display here. Styling (columns, typography, image ratio, Storefront token) is shared in Theme settings → Lookbook."
+      "info": "Pick the lookbook to display here. Styling (columns, typography, image ratio) is shared in Theme settings → Lookbook."
     }
   ],
   "presets": [
