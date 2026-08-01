@@ -32,8 +32,7 @@ entirely from the Shopify admin with no third-party apps.
 2. Fill in **Title** and **Description**.
 3. Under **Products**, use the product picker to add each product to the list.
 4. On the home page, add the **Lookbook** section and select this entry from the
-   native **Lookbook** metaobject picker (no need to type the handle). A text
-   "Lookbook handle (fallback)" field is available for advanced use.
+   native **Lookbook** metaobject picker (no need to type the handle).
 
 ## How membership is resolved on product pages
 
