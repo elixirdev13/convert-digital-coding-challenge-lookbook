@@ -1,7 +1,7 @@
 {
   "name": "convertdigital-shopify-lookbook",
   "version": "1.0.0",
-  "description": "Shopify Lookbook feature (Horizon theme) rendered with React + TypeScript, powered by metaobjects and the Storefront API.",
+  "description": "Shopify Lookbook feature (Online Store 2.0 / Dawn-based theme) rendered with React + TypeScript, powered by metaobjects and the Storefront API.",
   "private": true,
   "type": "module",
   "scripts": {

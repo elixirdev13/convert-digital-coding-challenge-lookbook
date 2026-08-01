@@ -18,8 +18,9 @@ theme (including Horizon).
 - Two theme sections:
   - **Home page** — merchant chooses which lookbook to show.
   - **Product page** — no picker; auto-shows any lookbook the product is in (max 2).
-- **Configurable in the theme customizer:** columns, description toggle, and font
-  sizes for heading, subheading, product title, and price.
+- **Configurable in the theme customizer:** columns, description toggle, image
+  aspect ratio, grid/carousel layout, text & background colors, and font sizes
+  for heading, subheading, product title, and price.
 - **Tailwind CSS**, scoped with an `lb-` prefix and Preflight disabled so it never
   restyles the host theme.
 

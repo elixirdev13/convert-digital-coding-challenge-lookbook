@@ -6,7 +6,8 @@ End-to-end steps to run the lookbook feature on a Shopify development store.
 
 - Node.js 18+ and npm
 - [Shopify CLI](https://shopify.dev/docs/api/shopify-cli) (`npm i -g @shopify/cli @shopify/theme`)
-- A Shopify development store based on the **Horizon** theme
+- A Shopify development store on an Online Store 2.0 theme (this project uses a
+  **Dawn-based** theme; the sections work on any OS 2.0 theme)
 
 ## 2. Configure markets (AUD + JPY)
 
