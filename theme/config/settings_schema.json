@@ -1667,10 +1667,6 @@
         "content": "Storefront API"
       },
       {
-        "type": "paragraph",
-        "content": "Reviewer note: this is a PUBLIC Storefront API token (read-only, unauthenticated). It is designed to be exposed in the browser — the React app uses it to fetch product data at runtime, exactly like Shopify Hydrogen / headless storefronts. It is NOT an Admin API token and cannot access orders or customer data. It is pre-filled here for demo/assessment purposes and can be rotated in Admin → Apps at any time."
-      },
-      {
         "type": "text",
         "id": "lookbook_storefront_token",
         "label": "Storefront API public token",
