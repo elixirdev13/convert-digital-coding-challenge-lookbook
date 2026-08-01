@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import type { StorefrontProduct } from "../types";
 import { ProductCard } from "./ProductCard";
 
@@ -64,17 +65,17 @@ export function ProductCarousel({
             type="button"
             aria-label="Previous products"
             onClick={() => scrollByView(-1)}
-            className="lb-absolute lb-left-2 lb-top-1/2 -lb-translate-y-1/2 lb-z-10 lb-flex lb-h-14 lb-w-14 lb-items-center lb-justify-center lb-rounded-full lb-border-0 lb-bg-white lb-text-5xl lb-leading-none lb-text-gray-800 lb-shadow-lg lb-cursor-pointer hover:lb-bg-gray-100"
+            className="lb-absolute lb-left-2 lb-top-1/2 -lb-translate-y-1/2 lb-z-10 lb-flex lb-h-12 lb-w-12 lb-items-center lb-justify-center lb-rounded-full lb-border-0 lb-bg-white lb-text-gray-800 lb-shadow-lg lb-cursor-pointer hover:lb-bg-gray-100"
           >
-            &#8249;
+            <FiChevronLeft size={28} aria-hidden="true" />
           </button>
           <button
             type="button"
             aria-label="Next products"
             onClick={() => scrollByView(1)}
-            className="lb-absolute lb-right-2 lb-top-1/2 -lb-translate-y-1/2 lb-z-10 lb-flex lb-h-14 lb-w-14 lb-items-center lb-justify-center lb-rounded-full lb-border-0 lb-bg-white lb-text-5xl lb-leading-none lb-text-gray-800 lb-shadow-lg lb-cursor-pointer hover:lb-bg-gray-100"
+            className="lb-absolute lb-right-2 lb-top-1/2 -lb-translate-y-1/2 lb-z-10 lb-flex lb-h-12 lb-w-12 lb-items-center lb-justify-center lb-rounded-full lb-border-0 lb-bg-white lb-text-gray-800 lb-shadow-lg lb-cursor-pointer hover:lb-bg-gray-100"
           >
-            &#8250;
+            <FiChevronRight size={28} aria-hidden="true" />
           </button>
         </>
       )}
