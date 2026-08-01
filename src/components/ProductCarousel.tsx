@@ -25,6 +25,11 @@ export function ProductCarousel({
 }: ProductCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
 
+  // On large screens up to 4 products fit in view, so arrows would be useless.
+  // Only show them once there is something to scroll to. Touch swipe still
+  // works regardless.
+  const showArrows = products.length > 4;
+
   const scrollByView = (direction: number) => {
     const el = trackRef.current;
     if (!el) return;
@@ -53,22 +58,26 @@ export function ProductCarousel({
         ))}
       </div>
 
-      <button
-        type="button"
-        aria-label="Previous products"
-        onClick={() => scrollByView(-1)}
-        className="lb-absolute lb-left-1 lb-top-1/2 -lb-translate-y-1/2 lb-z-10 lb-flex lb-h-10 lb-w-10 lb-items-center lb-justify-center lb-rounded-full lb-border-0 lb-bg-white lb-text-2xl lb-leading-none lb-text-gray-800 lb-shadow-md lb-cursor-pointer hover:lb-bg-gray-100"
-      >
-        &#8249;
-      </button>
-      <button
-        type="button"
-        aria-label="Next products"
-        onClick={() => scrollByView(1)}
-        className="lb-absolute lb-right-1 lb-top-1/2 -lb-translate-y-1/2 lb-z-10 lb-flex lb-h-10 lb-w-10 lb-items-center lb-justify-center lb-rounded-full lb-border-0 lb-bg-white lb-text-2xl lb-leading-none lb-text-gray-800 lb-shadow-md lb-cursor-pointer hover:lb-bg-gray-100"
-      >
-        &#8250;
-      </button>
+      {showArrows && (
+        <>
+          <button
+            type="button"
+            aria-label="Previous products"
+            onClick={() => scrollByView(-1)}
+            className="lb-absolute lb-left-2 lb-top-1/2 -lb-translate-y-1/2 lb-z-10 lb-flex lb-h-14 lb-w-14 lb-items-center lb-justify-center lb-rounded-full lb-border-0 lb-bg-white lb-text-5xl lb-leading-none lb-text-gray-800 lb-shadow-lg lb-cursor-pointer hover:lb-bg-gray-100"
+          >
+            &#8249;
+          </button>
+          <button
+            type="button"
+            aria-label="Next products"
+            onClick={() => scrollByView(1)}
+            className="lb-absolute lb-right-2 lb-top-1/2 -lb-translate-y-1/2 lb-z-10 lb-flex lb-h-14 lb-w-14 lb-items-center lb-justify-center lb-rounded-full lb-border-0 lb-bg-white lb-text-5xl lb-leading-none lb-text-gray-800 lb-shadow-lg lb-cursor-pointer hover:lb-bg-gray-100"
+          >
+            &#8250;
+          </button>
+        </>
+      )}
     </div>
   );
 }
